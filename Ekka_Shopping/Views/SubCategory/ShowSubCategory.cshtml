@@ -1,0 +1,152 @@
+﻿@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Subcategory Show";
+}
+<style>
+    .form-select {
+        background-color: #111;
+    }
+</style>
+<!-- Row start -->
+<!-- Heading start -->
+<div class="card-header">
+    <h2 class="text-center">Subcategory List</h2>
+</div>
+<!-- Heading end -->
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body">
+
+                <table id="subcategoryTable" class="table table-bordered table-striped align-middle m-0">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Subcategory Id</th>
+                            <th>Subcategory Name</th>
+                            <th>Category Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @model IEnumerable<Subcategory>
+                        @foreach (var subcategory in Model)
+                        {
+                            <tr>
+                                <td>@subcategory.subcategory_id</td>
+                                <td>@subcategory.subcategory_name</td>
+                                <td>@subcategory.Category.Category_Name</td>
+                                <td>
+                                    <a class="btn btn-outline-primary btn-sm"
+                                       asp-action="UpdateSubcategory" asp-route-id="@subcategory.subcategory_id" asp-controller="Subcategory">
+                                        <i class="icon-check-circle"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm" asp-action="DeleteSubcategory" asp-route-id="@subcategory.subcategory_id" asp-controller="Subcategory">
+                                        <i class="icon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Row end -->
+<!-- DataTables initialization script -->
+<script>
+    $(document).ready(function () {
+        $('#subcategoryTable').DataTable({
+            "paging": true,   // Enable pagination
+            "ordering": true, // Enable column sorting
+            "info": true      // Enable table information display
+        });
+    });
+</script>
+
+@{
+    var Subcategory_Insert_Success = TempData["Subcategory_Insert_Success"] as string;
+    var Subcategory_Insert_Error = TempData["Subcategory_Insert_Error"] as string;
+
+    var Subcategory_Delete_Success = TempData["Subcategory_Delete_Success"] as string;
+    var Subcategory_Delete_Error = TempData["Subcategory_Delete_Error"] as string;
+
+    var Subcategory_Update_Error = TempData["Subcategory_Update_Error"] as string;
+    var Subcategory_Update_Success = TempData["Subcategory_Update_Success"] as string;
+}
+
+@if (!string.IsNullOrEmpty(Subcategory_Insert_Success))
+{
+    <script>
+        Swal.fire({
+            title: "Success",
+            icon: "success",
+            text: "@Subcategory_Insert_Success",
+            timer: 3000
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Subcategory_Insert_Error))
+{
+    <script>
+        Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: "@Subcategory_Insert_Error"
+        }).then(() => {
+            window.location.href = '@Url.Action("AddSubCategory", "Subcategory")';
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Subcategory_Delete_Success))
+{
+    <script>
+        Swal.fire({
+            title: "Success",
+            icon: "success",
+            text: "@Subcategory_Delete_Success",
+            timer: 3000
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Subcategory_Delete_Error))
+{
+    <script>
+        Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: "@Subcategory_Delete_Error"
+        }).then(() => {
+            window.location.href = '@Url.Action("ShowSubCategory", "Subcategory")';
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Subcategory_Update_Success))
+{
+    <script>
+        Swal.fire({
+            title: "Success",
+            icon: "success",
+            text: "@Subcategory_Update_Success",
+            timer: 3000
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Subcategory_Update_Error))
+{
+    <script>
+        Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: "@Subcategory_Update_Error"
+        }).then(() => {
+            window.location.href = '@Url.Action("ShowSubCategory", "Subcategory")';
+        });
+    </script>
+}

@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Delete Product";
+}
+
+<!-- Row start -->
+<!-- Heading start -->
+<div class="card-header">
+    <h2 class="text-center">Delete Product</h2>
+</div>
+<!-- Heading end -->
+<div class="row gx-3 justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <!-- Row start -->
+                @model Ekka_Shopping.Models.Product
+
+                <form class="row g-3" asp-action="DeleteProduct" method="POST" asp-controller="Product">
+                    <div class="col-12">
+                        <input type="hidden" class="form-control" id="inputAddress2"
+                               placeholder="Enter Product Name..." asp-for="Pro_Id" readonly />
+                        <label for="inputAddress2" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="inputAddress2"
+                               placeholder="Enter Product Name..." asp-for="Pro_Name" readonly />
+                    </div>
+                    <div class="col-12">
+                        <label for="inputAddress3" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="inputAddress3"
+                               placeholder="Enter Price..." asp-for="Pro_Price" readonly />
+                    </div>
+                    <div class="col-12">
+                        <label for="inputAddress4" class="form-label">Description</label>
+                        <textarea class="form-control" id="inputAddress4"
+                                  placeholder="Enter Description..." asp-for="Pro_Description" readonly></textarea>
+                    </div>
+                 
+
+                    <div class="col-12">
+                        <label for="inputAddress6" class="form-label">Subcategory ID</label>
+                        <input type="number" class="form-control" id="inputAddress6"
+                               placeholder="Enter Subcategory ID..." asp-for="Subcategory_id" readonly />
+                    </div>
+                    <div class="d-flex justify-content-center gap-2 text-center">
+                        <button type="submit" class="btn btn-outline-danger">
+                            Delete Product
+                        </button>
+                        <a type="button" class="btn btn-outline-success" asp-action="Index" asp-controller="Product">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+                <!-- Row end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row end -->

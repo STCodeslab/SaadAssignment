@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Product Add Form";
+}
+
+<!-- Row start -->
+<!-- Heading start -->
+<div class="card-header">
+    <h2 class="text-center">Product Add Form</h2>
+</div>
+<!-- Heading end -->
+<div class="row gx-3 justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <!-- Row start -->
+                @model Ekka_Shopping.Models.Product
+
+                <form class="row g-3" asp-action="AddProducts" asp-controller="Product" enctype="multipart/form-data">
+                    <div class="col-12">
+                        <label for="inputProductName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="inputProductName"
+                               placeholder="Enter Product Name..." asp-for="Pro_Name" required />
+                    </div>
+                    <div class="col-12">
+                        <label for="inputProductPrice" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="inputProductPrice"
+                               placeholder="Enter Product Price..." asp-for="Pro_Price" required />
+                    </div>
+                    <div class="col-12">
+                        <label for="inputProductDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="inputProductDescription"
+                                  placeholder="Enter Product Description..." asp-for="Pro_Description" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="inputProductImage" class="form-label">Image</label>
+                        <input type="file" class="form-control" id="inputProductImage" asp-for="Pro_Image" required />
+                    </div>
+                    <div class="col-12">
+                        <label for="inputSubcategoryId" class="form-label">Subcategory ID</label>
+                        <select  class="form-select" asp-for="Subcategory_id" asp-items="ViewBag.SubCategory" required>
+                            <option selected disabled>Choose...</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-center gap-2 text-center">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            Add Product
+                        </button>
+                        <a type="button" class="btn btn-outline-success" asp-action="Index" asp-controller="Admin">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+                <!-- Row end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row end -->
+@{
+    var Message = TempData["Message"] as string;
+    var Error = TempData["Error"] as string;
+}
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <script>
+        Swal.fire({
+            title: "Success",
+            icon: "success",
+            text: "@Message",
+            timer: 3000
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Error))
+{
+    <script>
+        Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: "@Error"
+        }).then(() => {
+            window.location.href = '@Url.Action("AddProduct", "Product")';
+        });
+    </script>
+}
+

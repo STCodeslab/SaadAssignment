@@ -1,0 +1,151 @@
+﻿@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Role Show";
+    
+}
+<style>
+    .form-select {
+        background-color: #111;
+    }
+</style>
+<!-- Row start -->
+<!-- Heading start -->
+<div class="card-header">
+    <h2 class="text-center">Role List</h2>
+</div>
+<!-- Heading end -->
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body">
+
+                <table id="roleTable" class="table table-bordered table-striped align-middle m-0">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Role Id</th>
+                            <th>Role Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @model IEnumerable<Role>
+                        @foreach (var role in Model)
+                        {
+                            <tr>
+                                <td>@role.RoleId</td>
+                                <td>@role.RoleName</td>
+                                <td>
+                                    <a class="btn btn-outline-primary btn-sm"
+                                       asp-action="UpdateRole" asp-route-id="@role.RoleId" asp-controller="Role">
+                                        <i class="icon-check-circle"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm" asp-action="DeleteRole" asp-route-id="@role.RoleId" asp-controller="Role">
+                                        <i class="icon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Row end -->
+<!-- DataTables initialization script -->
+<script>
+    $(document).ready(function () {
+        $('#roleTable').DataTable({
+            "paging": true,   // Enable pagination
+            "ordering": true, // Enable column sorting
+            "info": true      // Enable table information display
+        });
+    });
+</script>
+
+@{
+    var Role_Insert_Success = TempData["Role_Insert_Success"] as string;
+    var Role_Insert_Error = TempData["Role_Insert_Error"] as string;
+
+    var Role_Delete_Success = TempData["Role_Delete_Success"] as string;
+    var Role_Delete_Error = TempData["Role_Delete_Error"] as string;
+
+    var Role_Update_Error = TempData["Role_Update_Error"] as string;
+    var Role_Update_Success = TempData["Role_Update_Success"] as string;
+}
+
+@if (!string.IsNullOrEmpty(Role_Insert_Success))
+{
+    <script>
+        Swal.fire({
+            title: "Success",
+            icon: "success",
+            text: "@Role_Insert_Success",
+            timer: 3000
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Role_Insert_Error))
+{
+    <script>
+        Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: "@Role_Insert_Error"
+        }).then(() => {
+            window.location.href = '@Url.Action("Role_Form", "Role")';
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Role_Delete_Success))
+{
+    <script>
+        Swal.fire({
+            title: "Success",
+            icon: "success",
+            text: "@Role_Delete_Success",
+            timer: 3000
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Role_Delete_Error))
+{
+    <script>
+        Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: "@Role_Delete_Error"
+        }).then(() => {
+            window.location.href = '@Url.Action("Role_Show", "Role")';
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Role_Update_Success))
+{
+    <script>
+        Swal.fire({
+            title: "Success",
+            icon: "success",
+            text: "@Role_Update_Success",
+            timer: 3000
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(Role_Update_Error))
+{
+    <script>
+        Swal.fire({
+            title: "Error",
+            icon: "error",
+            text: "@Role_Update_Error"
+        }).then(() => {
+            window.location.href = '@Url.Action("Role_Show", "Role")';
+        });
+    </script>
+}

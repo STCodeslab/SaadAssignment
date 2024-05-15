@@ -1,0 +1,370 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Admin Panel | @ViewData["Title"] </title>
+
+	<!-- Meta -->
+	<meta name="description" content="Marketplace for Bootstrap Admin Dashboards" />
+	<meta name="author" content="Bootstrap Gallery" />
+	<link rel="canonical" href="https://www.bootstrap.gallery/">
+	<meta property="og:url" content="https://www.bootstrap.gallery/">
+	<meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+	<meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+	<meta property="og:type" content="Website">
+	<meta property="og:site_name" content="Bootstrap Gallery">
+	<link rel="shortcut icon" href="~/assets/images/favicon.svg" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-npC9Os4QeFpqy62gn5T/ZjXs0u8GNla6VJe3hqIq9R4p9+zVoCWQiDMWeAaz/gwFbw98ISm3MmLXuJLg7kvj3w==" crossorigin="anonymous" />
+
+	<!-- Include jQuery and DataTables CSS and JS -->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+	<!-- *************
+		************ CSS Files *************
+	************* -->
+	<!-- Icomoon Font Icons css -->
+	<link rel="stylesheet" href="~/assets/fonts/icomoon/style.css" />
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="~/assets/css/main.min.css" />
+
+	<!-- *************
+		************ Vendor Css Files *************
+	************ -->
+	<!-- Scrollbar CSS -->
+	<link rel="stylesheet" href="~/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+</head>
+
+<body>
+	<!-- Page wrapper start -->
+	<div class="page-wrapper">
+
+		<!-- Main container start -->
+		<div class="main-container">
+
+			<!-- Sidebar wrapper start -->
+			<nav id="sidebar" class="sidebar-wrapper">
+
+				<!-- App brand starts -->
+				<div class="app-brand px-3 py-2 d-flex align-items-center">
+					<a asp-action="Index">
+						<img src="~/assets/images/dark-logo.png" class="logo" alt="Bootstrap Gallery" />
+					</a>
+				</div>
+				<!-- App brand ends -->
+				<!-- Sidebar menu starts -->
+				<div class="sidebarMenuScroll">
+					<ul class="sidebar-menu">
+						<li class="active current-page">
+							<a asp-action="Index">
+								<i class="icon-stacked_line_chart"></i>
+								<span class="menu-text">Dashboard</span>
+							</a>
+						</li>
+
+						<!-- Roles -->
+						<li class="treeview">
+							<a href="#!">
+								<i class="icon-users"></i>
+
+								<span class="menu-text">Roles</span>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a asp-controller="Role" asp-action="AddRole">Add Role</a>
+								</li>
+								<li>
+									<a asp-controller="Role" asp-action="Role_Show">Show Role</a>
+								</li>
+							</ul>
+						</li>
+
+
+						<!-- Users -->
+
+
+						<li>
+							<a asp-action="User_Show">
+								<i class="icon-user-plus"></i>
+								<span class="menu-text">User</span>
+							</a>
+
+						</li>
+
+						<li class="treeview">
+							<a href="#!">
+								<i class="icon-book-open"></i>
+								<span class="menu-text">Gender</span>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a asp-controller="Gender"  asp-action="AddGender">Add Gender</a>
+								</li>
+								<li>
+									<a asp-controller="Gender" asp-action="ShowGender">Show Gender</a>
+								</li>
+							</ul>
+						</li>
+
+
+						<!-- Category -->
+						<li class="treeview">
+							<a href="#!">
+								<i class="icon-book-open"></i>
+								<span class="menu-text">Category</span>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a asp-controller="Category" asp-action="AddCategory">Add Category</a>
+								</li>
+								<li>
+									<a asp-controller="Category" asp-action="ShowCategory">Show Category</a>
+								</li>
+							</ul>
+						</li>
+
+
+
+
+						<li class="treeview">
+							<a href="#!">
+								<i class="icon-book-open"></i>
+								<span class="menu-text">SubCategory</span>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a asp-controller="Subcategory" asp-action="AddSubCategory">Add SubCategory</a>
+								</li>
+								<li>
+									<a asp-controller="Subcategory" asp-action="ShowSubCategory">Show SubCategory</a>
+								</li>
+							</ul>
+						</li>
+
+
+
+						<!-- Product -->
+
+						<li class="treeview">
+							<a href="#!">
+								<i class="icon-grid_on"></i>
+								<span class="menu-text">Product</span>
+							</a>
+							<ul class="treeview-menu">
+								<li>
+									<a asp-controller="Product" asp-action="AddProduct">Add Product</a>
+								</li>
+								<li>
+									<a asp-controller="Product" asp-action="ShowProduct">Show Product</a>
+								</li>
+							</ul>
+						</li>
+
+
+						
+@* 
+						<li>
+							<a asp-action="Order_Show">
+								<i class="icon-shopping-cart"></i>
+								<span class="menu-text">Orders</span>
+							</a>
+						
+						</li>
+
+
+						<li>
+							<a asp-action="Payment_Show">
+								<i class="icon-shopping-cart"></i>
+								<span class="menu-text">Payment</span>
+							</a>
+
+						</li>
+
+
+
+						
+
+						<li>
+							<a asp-action="Invoices_Show">
+								<i class="icon-attach_money"></i>
+								<span class="menu-text">Invoice</span>
+							</a>
+
+						</li> *@
+				
+
+
+					</ul>
+					</li>
+					</ul>
+				</div>
+				<!-- Sidebar menu ends -->
+
+			</nav>
+			<!-- Sidebar wrapper end -->
+			<!-- App container starts -->
+			<div class="app-container">
+
+				<!-- App header starts -->
+				<div class="app-header d-flex align-items-center">
+
+					<!-- Toggle buttons start -->
+					<div class="d-flex">
+						<button class="btn btn-outline-light toggle-sidebar" id="toggle-sidebar">
+							<i class="icon-menu"></i>
+						</button>
+						<button class="btn btn-outline-light pin-sidebar" id="pin-sidebar">
+							<i class="icon-menu"></i>
+						</button>
+					</div>
+					<!-- Toggle buttons end -->
+					<!-- App header actions start -->
+					<div class="header-actions">
+						<div class="dropdown">
+							<a class="dropdown-toggle d-flex p-3 position-relative" href="#!" role="button"
+							   data-bs-toggle="dropdown" aria-expanded="false">
+								<img src="~/assets/images/flags/1x1/gb.svg" class="flag-img" alt="Great Britain" />
+							</a>
+							<div class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-mini">
+								<div class="country-container">
+									<a asp-action="Index" class="py-2">
+										<img src="~/assets/images/flags/1x1/us.svg" alt="USA" />
+									</a>
+									<a asp-action="Index" class="py-2">
+										<img src="~/assets/images/flags/1x1/in.svg" alt="India" />
+									</a>
+									<a asp-action="Index" class="py-2">
+										<img src="~/assets/images/flags/1x1/br.svg" alt="Brazil" />
+									</a>
+									<a asp-action="Index" class="py-2">
+										<img src="~/assets/images/flags/1x1/tr.svg" alt="Turkey" />
+									</a>
+									<a asp-action="Index" class="py-2">
+										<img src="~/assets/images/flags/1x1/id.svg" alt="Indonesia" />
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="dropdown">
+							<a class="dropdown-toggle d-flex p-3 position-relative" href="#">
+								<i class="icon-mail fs-4 lh-1"></i>
+								<span class="count rounded-circle bg-danger">9</span>
+							</a>
+						</div>
+						<div class="dropdown">
+							<a class="dropdown-toggle d-flex p-3 position-relative" href="#">
+								<i class="icon-twitch fs-4 lh-1"></i>
+								<span class="count rounded-circle bg-danger">5</span>
+							</a>
+						</div>
+
+
+
+						<div class="dropdown ms-2">
+							<a class="dropdown-toggle d-flex align-items-center user-settings" href="#!" role="button"
+							   data-bs-toggle="dropdown" aria-expanded="false">
+
+								  @{
+								 	string username = User.FindFirstValue(ClaimTypes.Name);
+								 } 
+
+								<span>@username</span> 
+								
+							</a>
+							<div class="dropdown-menu dropdown-menu-end dropdown-menu-sm shadow-sm gap-3">
+							
+								
+								<a class="dropdown-item d-flex align-items-center py-2" asp-action="Logout" asp-controller="Account">
+									<i class="icon-log-out fs-4 me-3"></i>Logout
+								</a>
+							</div>
+						</div>
+					</div>
+					<!-- App header actions end -->
+				</div>
+				<!-- App header ends -->
+				<!-- App body starts -->
+				<div class="app-body">
+					<!-- Container starts -->
+					<div class="container-fluid">
+						@RenderBody()
+
+					</div>
+					<!-- Container ends -->
+
+				</div>
+				<!-- App body ends -->
+				<!-- App footer start -->
+				<div class="app-footer">
+					<span>© Admin Panel</span>
+				</div>
+				<!-- App footer end -->
+
+			</div>
+			<!-- App container ends -->
+
+		</div>
+		<!-- Main container end -->
+
+	</div>
+	<!-- Page wrapper end -->
+	<!-- *************
+		************ JavaScript Files *************
+	************* -->
+	<!-- Required jQuery first, then Bootstrap Bundle JS -->
+	<script src="~/assets/js/jquery.min.js"></script>
+	<script src="~/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- *************
+		************ Vendor Js Files *************
+	************* -->
+	<!-- Overlay Scroll JS -->
+	<script src="~/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+	<script src="~/assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+	<!-- Apex Charts -->
+	<script src="~/assets/vendor/apex/apexcharts.min.js"></script>
+	<script src="~/assets/vendor/apex/custom/home/ticketsData.js"></script>
+	<script src="~/assets/vendor/apex/custom/home/avgTimeData.js"></script>
+	<script src="~/assets/vendor/apex/custom/home/liveCallsData.js"></script>
+	<script src="~/assets/vendor/apex/custom/home/agentsLiveData.js"></script>
+	<script src="~/assets/vendor/apex/custom/home/ticketsPriorityData.js"></script>
+	<script src="~/assets/vendor/apex/custom/home/newClosedData.js"></script>
+
+	<!-- Rating -->
+	<script src="~/assets/vendor/rating/raty.js"></script>
+	<script src="~/assets/vendor/rating/raty-custom.js"></script>
+
+	<!-- Custom JS files -->
+	<script src="~/assets/js/custom.js"></script>
+
+
+
+
+	<!-- Data Tables -->
+	<script src="~/assets/vendor/datatables/dataTables.min.js"></script>
+	<script src="~/assets/vendor/datatables/dataTables.bootstrap.min.js"></script>
+	<script src="~/assets/vendor/datatables/custom/custom-datatables.js"></script>
+	<!-- DataTable Buttons -->
+	<script src="~/assets/vendor/datatables/buttons/dataTables.buttons.min.js"></script>
+	<script src="~/assets/vendor/datatables/buttons/jszip.min.js"></script>
+	<script src="~/assets/vendor/datatables/buttons/dataTables.buttons.min.js"></script>
+	<script src="~/assets/vendor/datatables/buttons/pdfmake.min.js"></script>
+	<script src="~/assets/vendor/datatables/buttons/vfs_fonts.js"></script>
+	<script src="~/assets/vendor/datatables/buttons/buttons.html5.min.js"></script>
+	<script src="~/assets/vendor/datatables/buttons/buttons.print.min.js"></script>
+	<script src="~/assets/vendor/datatables/buttons/buttons.colVis.min.js"></script>
+
+
+</body>
+
+
+
+</html>

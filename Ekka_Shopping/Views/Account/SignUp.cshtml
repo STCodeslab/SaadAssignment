@@ -1,0 +1,70 @@
+﻿<!-- Ec breadcrumb start -->
+<div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row ec_breadcrumb_inner">
+                    <div class="col-md-6 col-sm-12">
+                        <h2 class="ec-breadcrumb-title">Register</h2>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <!-- ec-breadcrumb-list start -->
+                        <ul class="ec-breadcrumb-list">
+                            <li class="ec-breadcrumb-item"><a  asp-action="Index" >Home</a></li>
+                            <li class="ec-breadcrumb-item active">Register</li>
+                        </ul>
+                        <!-- ec-breadcrumb-list end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ec breadcrumb end -->
+<!-- Start Register -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="section-title">
+                    <h2 class="ec-bg-title">Register</h2>
+                    <h2 class="ec-title">Register</h2>
+                    <p class="sub-title mb-3">Best place to buy and sell digital products</p>
+                </div>
+            </div>
+
+            @model User
+
+            <div class="ec-register-wrapper">
+                <div class="ec-register-container">
+                    <div class="ec-register-form">
+                        <form asp-action="SignUp" method="post">
+                            <span class="ec-register-wrap ec-register-half">
+                                <label>Full Name*</label>
+                                <input type="text" asp-for="UserFullName" placeholder="Enter your first name" required />
+                            </span>
+                         
+                            <span class="ec-register-wrap ec-register-half">
+                                <label>Email*</label>
+                                <input type="email" asp-for="UserEmail" placeholder="Enter your email add..." required />
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <label>Password*</label>
+                                <input type="password" asp-for="UserPassword" required />
+                            </span>
+                            
+                           
+                          
+                          
+                            <span class="ec-register-wrap ec-register-btn">
+                                <button class="btn btn-primary" type="submit">Register</button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Register -->

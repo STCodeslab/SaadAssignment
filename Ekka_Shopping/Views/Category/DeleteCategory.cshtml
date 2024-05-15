@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Category Delete Form";
+}
+
+<!-- Row start -->
+<!-- Heading start -->
+<div class="card-header">
+    <h2 class="text-center">Category Delete</h2>
+</div>
+<!-- Heading end -->
+<div class="row gx-3 justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <!-- Row start -->
+                @model Ekka_Shopping.Models.Category
+
+                <form class="row g-3" asp-action="DeleteCategory" method="POST" asp-controller="Category">
+                    <div class="col-12">
+                        <input type="hidden" class="form-control" id="inputAddress2"
+                               placeholder="Enter Category Name..." asp-for="Category_Id" readonly />
+                        <label for="inputAddress2" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="inputAddress2"
+                               placeholder="Enter Category Name..." asp-for="Category_Name" readonly />
+                        <!-- Display error message in this div -->
+                        <div id="categoryNameError" class="text-danger"></div>
+                    </div>
+                    <div class="d-flex justify-content-center gap-2 text-center">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            Delete Category
+                        </button>
+                        <a type="button" class="btn btn-outline-success" asp-action="Index" asp-controller="Admin">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+                <!-- Row end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row end -->

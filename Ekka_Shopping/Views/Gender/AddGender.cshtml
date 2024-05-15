@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "_DashboardLayout";
+    ViewData["Title"] = "Gender Form";
+}
+
+<!-- Row start -->
+<!-- Heading start -->
+<div class="card-header">
+    <h2 class="text-center">Gender Add Form</h2>
+</div>
+<!-- Heading end -->
+<div class="row gx-3 justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <!-- Row start -->
+                @model Ekka_Shopping.Models.Gender
+
+                <form class="row g-3" asp-action="AddGender" asp-controller="Gender" method="POST">
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Gender Name</label>
+                        <input type="text" class="form-control" id="inputAddress2"
+                               placeholder="Enter Gender Name..." asp-for="gender_name" onkeyup="validateGenderName()" required />
+                        <!-- Display error message in this div -->
+                        <div id="genderNameError" class="text-danger"></div>
+                    </div>
+                    <div class="d-flex justify-content-center gap-2 text-center">
+                        <button type="submit" class="btn btn-outline-secondary">
+                            Add Gender
+                        </button>
+                        <a type="button" class="btn btn-outline-success" asp-action="Index" asp-controller="Admin">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+                <!-- Row end -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Row end -->
+
+<script>
+    function validateGenderName() {
+        var genderNameInput = document.getElementById("inputAddress2");
+        var genderNameValue = genderNameInput.value;
+        var genderNameErrorDiv = document.getElementById("genderNameError");
+
+        // Use a regular expression to check if the input contains only alphabets
+        var isValid = /^[A-Za-z]+$/.test(genderNameValue);
+
+        if (!isValid) {
+            // Display an error message in the div
+            genderNameErrorDiv.innerText = "Please enter only alphabets without spaces.";
+
+            // Clear the input field or prevent non-alphabetic characters
+            genderNameInput.value = genderNameValue.replace(/[^A-Za-z]/g, '');
+        } else {
+            // Clear the error message when input is valid
+            genderNameErrorDiv.innerText = "";
+        }
+    }
+</script>
